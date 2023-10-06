@@ -1,5 +1,15 @@
+using MessagingService.Model;
+using MessagingService.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("AppDb");
+
+builder.Services.AddScoped<IDataRepository, DataRepository>();
+builder.Services.AddDbContext<MessagingDbContext>(x => x.UseSqlServer(connectionString));
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -14,30 +24,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapGet("HealthCheck", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    return "Health is fine.";
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/message/add", ([FromServices] IDataRepository db, Message message) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    return db.AddMessage(message);
+});
+
+app.MapGet("/message/{id}", ([FromServices] IDataRepository db, int id) =>
+{
+    return db.GetById(id);
+});
+
+app.MapGet("/message/getall", ([FromServices] IDataRepository db) =>
+{
+    return db.GetAll();
+});
+
+app.MapGet("/message/delete", ([FromServices] IDataRepository db, int id) =>
+{
+    return db.DeleteById(id);
+});
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
