@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImageUploadService", "ImageUploadService", "{A7C30E7F-BB38-4EEC-8269-3CFA077FA6D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUploadService", "ImageUploadService\ImageUploadService.csproj", "{49064603-60DA-4968-BCA9-26DF98B9FCB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,10 @@ Global
 		{98D74B52-9E53-464B-9CA0-90B1E2A4FE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98D74B52-9E53-464B-9CA0-90B1E2A4FE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98D74B52-9E53-464B-9CA0-90B1E2A4FE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49064603-60DA-4968-BCA9-26DF98B9FCB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49064603-60DA-4968-BCA9-26DF98B9FCB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49064603-60DA-4968-BCA9-26DF98B9FCB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49064603-60DA-4968-BCA9-26DF98B9FCB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,8 @@ Global
 		{98D74B52-9E53-464B-9CA0-90B1E2A4FE46} = {06835EE4-4D0C-403D-8140-4CFF8A89A9A8}
 		{06835EE4-4D0C-403D-8140-4CFF8A89A9A8} = {E6F0C9C3-021B-45FA-8A47-0387940DDF21}
 		{6924F733-D58F-4A59-9B07-F199F7AF76A2} = {E6F0C9C3-021B-45FA-8A47-0387940DDF21}
+		{A7C30E7F-BB38-4EEC-8269-3CFA077FA6D8} = {E6F0C9C3-021B-45FA-8A47-0387940DDF21}
+		{49064603-60DA-4968-BCA9-26DF98B9FCB4} = {A7C30E7F-BB38-4EEC-8269-3CFA077FA6D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8849C1B3-3CF4-4AF5-9EB1-897C3700C1BD}
