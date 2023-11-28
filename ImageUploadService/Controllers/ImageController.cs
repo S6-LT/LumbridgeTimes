@@ -1,6 +1,7 @@
 ﻿using ImageUploadService.Services;
 using Microsoft.AspNetCore.Mvc;
 using ImageUploadService.Model;
+using ImageUploadService.RabbitMQ;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,9 +13,11 @@ namespace ImageUploadService.Controller
     public class ImageController : ControllerBase
     {
         private readonly IImageService imageService;
-        public ImageController(IImageService imageService)
+        private readonly IRabitMQProducer _rabbitMQProducer;
+        public ImageController(IImageService imageService, IRabitMQProducer rabbitMQProducer)
         {
             this.imageService = imageService;
+            _rabbitMQProducer = rabbitMQProducer;
         }
         // GET: api/<ImageController>
         [HttpGet]
@@ -40,6 +43,7 @@ namespace ImageUploadService.Controller
         public ActionResult<Image> Post([FromBody] Image image)
         {
             imageService.Create(image);
+            _rabbitMQProducer.SendProductMessage(image);
 
             return CreatedAtAction(nameof(Get), new { id = image.id }, image);
         }

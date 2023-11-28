@@ -2,6 +2,7 @@ using ImageUploadService.Model;
 using ImageUploadService.Services;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using ImageUploadService.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("ImageDatabaseSettings:ConnectionString")));
 
 builder.Services.AddScoped<IImageService, ImageService>();
-
+builder.Services.AddScoped<IRabitMQProducer, RabitMQProducer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

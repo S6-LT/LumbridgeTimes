@@ -2,24 +2,41 @@ version: '3'
 services:
 
   sql-server-db:
-    container_name: sql-server-db
+    container_name: "ltdatabase"
     image: "mcr.microsoft.com/mssql/server:2019-latest"
-    ports:
-     - "1433:1433"
+    cap_add:
+      - SYS_NICE
+    restart: always
     environment:
-     SA_PASSWORD: "Welkom12345"
-     ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Welkom12345"
+      ACCEPT_EULA: "Y"
+    ports:
+      - '1433:1433'
 
-  userservice:
-    image: ${DOCKER_REGISTRY-}userservice
-    build:
-      context: .
-      dockerfile: UserService/Dockerfile
+  # userservice:
+  #   image: ${DOCKER_REGISTRY-}userservice
+  #   build:
+  #     context: .
+  #     dockerfile: UserService/Dockerfile
 
-  messagingservice:
-    image: ${DOCKER_REGISTRY-}messagingservice
-    build:
-      context: .
-      dockerfile: MessagingService/Dockerfile
+  # messagingservice:
+  #   image: ${DOCKER_REGISTRY-}messagingservice
+  #   build:
+  #     context: .
+  #     dockerfile: MessagingService/Dockerfile
+
+  # imageuploadservice:
+  #   image: ${DOCKER_REGISTRY-}imageuploadservice
+  #   build:
+  #     context: . 
+  #     dockerfile: ImageUploadService/Dockerfile
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+
 
   
