@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-// import "src/components/NavBar/NavBar.scss";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar() {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
   return (
     <Navbar
       bg="dark"
@@ -24,28 +24,21 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/test">Test Page</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown> */}
+            {isAuthenticated && (
+              <Button
+                onClick={() => {
+                  logout();
+                }}
+                variant="outline-light"
+                type="submit"
+              >
+                Logout
+              </Button>
+            )}
+            {isAuthenticated && <Nav.Link href="/profile">Profile</Nav.Link>}
+            {isAuthenticated && <Nav.Link href="/list">List</Nav.Link>}
+            {isAuthenticated && <Nav.Link href="/test">Test</Nav.Link>}
           </Nav>
-          {/* <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

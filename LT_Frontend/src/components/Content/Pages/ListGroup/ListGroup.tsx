@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../../../Loading";
 
 function ListGroup() {
   let items = ["Kaatsheuvel", "Tilburg", "Waalwijk", "Eindhoven"];
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
+  const { user } = useAuth0();
+  console.log(user);
   return (
     <>
       <h1>List</h1>
@@ -29,4 +32,6 @@ function ListGroup() {
   );
 }
 
-export default ListGroup;
+export default withAuthenticationRequired(ListGroup, {
+  onRedirecting: () => <Loading></Loading>,
+});
