@@ -4,6 +4,7 @@ import HomePage from "./components/Content/Pages/HomePage/HomePage";
 import Profile from "./components/Content/Pages/Profile/Profile";
 import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/Content/Content";
+import Message from "./components/Content/Pages/Messages/Message";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -25,6 +26,7 @@ function App(): JSX.Element {
               <Route path="/" element={<HomePage />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/List" element={<ListGroup />} />
+              <Route path="/Message" element={<Message />} />
               <Route path="/Test" element={<Test />} />
             </Routes>
           </Content>

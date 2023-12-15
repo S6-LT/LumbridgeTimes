@@ -37,6 +37,7 @@ function NavBar() {
             )}
             {isAuthenticated && <Nav.Link href="/profile">Profile</Nav.Link>}
             {isAuthenticated && <Nav.Link href="/list">List</Nav.Link>}
+            {isAuthenticated && <Nav.Link href="/Message">Message</Nav.Link>}
             {isAuthenticated && <Nav.Link href="/test">Test</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
