@@ -8,6 +8,7 @@ import Message from "./components/Content/Pages/Messages/Message";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 function App(): JSX.Element {
   const { isLoading, error, isAuthenticated } = useAuth0();
 

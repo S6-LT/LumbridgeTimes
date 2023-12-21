@@ -15,7 +15,6 @@ function Messages() {
   getMessages();
   const [messages, setMessages] =useState<messageType[]>([])
   const { user } = useAuth0();
-  
   const [messageIdToDelete, setDelete] = useState({
     id: ""
   })
