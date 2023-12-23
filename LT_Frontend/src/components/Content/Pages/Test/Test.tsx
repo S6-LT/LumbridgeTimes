@@ -7,6 +7,8 @@ import Loading from "../../../Loading";
 //   return <div className="example">this an example</div>;
 // }
 
+
+
 function Test() {
   const { user } = useAuth0();
   console.log(user);

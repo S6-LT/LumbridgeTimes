@@ -5,7 +5,14 @@ import Navbar from "react-bootstrap/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar() {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  console.log(user)
+  
+  
+  const userRole = {
+    role: user?.["http://localhost:5173/Role"]
+  }
+
 
   return (
     <Navbar
@@ -37,6 +44,7 @@ function NavBar() {
             )}
             {isAuthenticated && <Nav.Link href="/profile">Profile</Nav.Link>}
             {isAuthenticated && <Nav.Link href="/list">List</Nav.Link>}
+            {isAuthenticated && <Nav.Link href="/Message">Message</Nav.Link>}
             {isAuthenticated && <Nav.Link href="/test">Test</Nav.Link>}
           </Nav>
         </Navbar.Collapse>

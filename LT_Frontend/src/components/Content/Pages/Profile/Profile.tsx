@@ -3,6 +3,10 @@ import Loading from "../../../Loading";
 
 export const Profile = () => {
   const { user } = useAuth0();
+  console.log(user);
+  const userRole = {
+    role: user?.["http://localhost:5173/Role"]
+  }
   return (
     <>
       <div className="profile-picture">
@@ -18,7 +22,14 @@ export const Profile = () => {
         <li className="list-group-item list-group-item-dark">
           Email: {user?.email}
         </li>
+        {/* This shows authorization, need to have a role to see certain parts */}
+        {userRole.role == "admin"  &&
+        <li className="list-group-item list-group-item-dark">
+          Role: {user?.["http://localhost:5173/Role"]}
+        </li>
+        } 
       </ul>
+
     </>
   );
 };
