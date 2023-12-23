@@ -1,8 +1,8 @@
 FROM node:latest as build
 
-WORKDIR usr/local/app
+WORKDIR /app
 
-COPY ./ /usr/local/app/
+COPY . /app
 
 RUN npm install
 
