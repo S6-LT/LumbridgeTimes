@@ -1,8 +1,8 @@
 FROM node:latest
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install
-COPY . ./
+WORKDIR /app
+COPY package.json ./
+RUN npm install -g
+COPY ./ ./
 EXPOSE 5173
 CMD ["npm", "run", "dev"]
 
