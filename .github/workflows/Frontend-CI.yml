@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: latest
       - name: install dependencies
-        run: npm install LT_Frontend
+        run: npm install "LT_Frontend"
       - name: build
         run: npm run dev
             
