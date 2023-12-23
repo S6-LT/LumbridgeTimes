@@ -1,5 +1,5 @@
 FROM node:latest as build
-WORKDIR '/app'
+WORKDIR '/src'
 COPY src .
 RUN npm install
 COPY . .
