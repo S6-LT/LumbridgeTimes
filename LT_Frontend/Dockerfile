@@ -1,7 +1,8 @@
-FROM node:latest as build
-WORKDIR /app
-COPY ["LT_Frontend/package.json", "LT_Frontend/"]
+FROM node:latest
+WORKDIR /usr/src/app
+COPY package.json .
 RUN npm install
-COPY . .
-CMD ["npm", "run", "dev"]
+COPY . ./
 EXPOSE 5173
+CMD ["npm", "run", "dev"]
+
