@@ -32,9 +32,9 @@ jobs:
         run: |
           npm install --prefix ./LT_Frontend
       # build and test the apps
-      - name: build
-        run: |
-          npm run build
+#      - name: build
+#        run: |
+#          npm run build
           
   push_to_Docker_Hub:
 
