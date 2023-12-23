@@ -1,6 +1,6 @@
 FROM node:latest as build
-WORKDIR '/src'
-COPY src .
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 5173
