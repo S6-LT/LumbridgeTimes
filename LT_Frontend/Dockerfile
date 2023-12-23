@@ -1,5 +1,5 @@
 FROM node:latest
-WORKDIR /app
+WORKDIR '/app'
 COPY ./app .
 RUN npm install
 COPY . .
