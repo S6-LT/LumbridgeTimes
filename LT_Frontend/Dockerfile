@@ -1,6 +1,6 @@
 FROM node:latest
 WORKDIR /app
-COPY ../ /app
+COPY ./app .
 RUN npm install
 COPY . .
 EXPOSE 5173
