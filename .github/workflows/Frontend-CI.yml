@@ -20,17 +20,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: setup node
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
 
-      # install applicaion dependencies
+      # install application dependencies
       - name: Install dependencies
         run: |
-          npm install
+          npm install --prefix ./LT_Frontend
       # build and test the apps
       - name: build
         run: |
