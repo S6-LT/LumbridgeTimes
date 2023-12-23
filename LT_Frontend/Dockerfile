@@ -1,14 +1,12 @@
-FROM node
+FROM node:latest as build
 
-WORKDIR /app
+WORKDIR usr/local/app
 
-COPY ./ /package.json
-RUN npm i
+COPY ./ /usr/local/app/
 
-COPY . .
+RUN npm install
 
-## EXPOSE [Port you mentioned in the vite.config file]
+RUN npm run dev
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
