@@ -50,6 +50,8 @@ jobs:
             dockerfile: MessagingService/Dockerfile
           - image: UserService
             dockerfile: UserService/Dockerfile
+          - image: LTFrontEnd
+            dockerfile: LT_Frontend/Dockerfile
     steps:
       -
         name: Checkout
