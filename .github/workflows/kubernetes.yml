@@ -21,7 +21,6 @@ jobs:
       uses: Azure/login@v1.5.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        client-id: 
     - name: Azure CLI Action
       uses: Azure/cli@v1.0.9
       with:
