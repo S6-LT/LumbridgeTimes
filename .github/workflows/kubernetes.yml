@@ -1,0 +1,31 @@
+name: Kubernetes
+
+env:
+  resourceGroup: 'AzureLT'
+  kubernetesVersion: '1.28'
+  name: 'lumbridgetimesaks'
+  
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure Login
+      uses: Azure/login@v1.5.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Azure CLI Action
+      uses: Azure/cli@v1.0.9
+      with:
+        inlineScript: az aks create -g ${{ env.resourceGroup }} -n ${{ env.name }} --kubernetes-version ${{ env.kubernetesVersion }} --generate-ssh-keys
+
+              
+              
+      
