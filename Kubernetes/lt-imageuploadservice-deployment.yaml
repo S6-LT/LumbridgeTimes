@@ -25,7 +25,7 @@ spec:
         io.kompose.service: lt-imageuploadservice
     spec:
       containers:
-        - image: yarikbrouwer/imageuploadservice:main
+        - image: lumbridgetimes.azurecr.io/imageuploadservice:latest
           name: imageuploadservice
           ports:
             - containerPort: 5000

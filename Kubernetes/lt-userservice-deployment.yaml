@@ -25,7 +25,7 @@ spec:
         io.kompose.service: lt-userservice
     spec:
       containers:
-        - image: yarikbrouwer/userservice:main
+        - image: lumbridgetimes.azurecr.io/userservice:latest
           name: userservice
           ports:
             - containerPort: 5000
