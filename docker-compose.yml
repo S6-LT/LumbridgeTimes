@@ -1,17 +1,47 @@
 version: '3'
 services:
+    lt-messagingservice:
+        image: yarikbrouwer/messagingservice:main
+        container_name: 'messagingservice'
+        ports:
+          - 7080:5000
 
-  sql-server-db:
-    container_name: "ltdatabase"
-    image: "mcr.microsoft.com/mssql/server:2019-latest"
-    cap_add:
-      - SYS_NICE
-    restart: always
-    environment:
-      SA_PASSWORD: "Welkom12345"
-      ACCEPT_EULA: "Y"
-    ports:
-      - '1433:1433'
+    lt-userservice:
+        image: yarikbrouwer/userservice:main
+        container_name: 'userservice'
+        ports:
+          - 7081:5000
+
+    lt-imageuploadservice:
+        image: yarikbrouwer/imageuploadservice:main
+        container_name: 'imageuploadservice'
+        ports:
+          - 7082:5000
+    
+    lt-frontend:
+        image: vite-app:latest
+        container_name: 'ltfrontend'
+        ports:
+          - 5173:5173
+
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: 'rabbitmq'
+        ports:
+          - 5672:5672
+          - 15672:15672
+
+  # sql-server-db:
+  #   container_name: "ltdatabase"
+  #   image: "mcr.microsoft.com/mssql/server:2019-latest"
+  #   cap_add:
+  #     - SYS_NICE
+  #   restart: always
+  #   environment:
+  #     SA_PASSWORD: "Welkom12345"
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - '1433:1433'
 
   # userservice:
   #   image: ${DOCKER_REGISTRY-}userservice
@@ -30,13 +60,6 @@ services:
   #   build:
   #     context: . 
   #     dockerfile: ImageUploadService/Dockerfile
-  
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: 'rabbitmq'
-    ports:
-      - 5672:5672
-      - 15672:15672
 
 
   

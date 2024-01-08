@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: lt-userservice
+  name: lt-userservice
+spec:
+  ports:
+    - name: "7081"
+      port: 7081
+      targetPort: 5000
+  selector:
+    io.kompose.service: lt-userservice
+status:
+  loadBalancer: {}

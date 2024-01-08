@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: lt-userservice
+  name: lt-userservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: lt-userservice
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/lumbridgetimes-default: "true"
+        io.kompose.service: lt-userservice
+    spec:
+      containers:
+        - image: yarikbrouwer/userservice:main
+          name: userservice
+          ports:
+            - containerPort: 5000
+              hostPort: 7081
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}
