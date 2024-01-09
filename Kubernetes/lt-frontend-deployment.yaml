@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert
+    kompose.cmd: C:\Users\yarik\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert
     kompose.version: 1.31.2 (a92241f79)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert
+        kompose.cmd: C:\Users\yarik\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert
         kompose.version: 1.31.2 (a92241f79)
       creationTimestamp: null
       labels:
@@ -25,7 +25,7 @@ spec:
         io.kompose.service: lt-frontend
     spec:
       containers:
-        - image: lumbridgetimes.azurecr.io/ltfrontend:latest
+        - image: lumbridgetimes.azurecr.io/ltfrontend1:latest
           name: ltfrontend
           ports:
             - containerPort: 5173

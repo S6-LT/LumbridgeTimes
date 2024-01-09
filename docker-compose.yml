@@ -19,7 +19,7 @@ services:
           - 7082:5000
     
     lt-frontend:
-        image: vite-app:latest
+        image: yarikbrouwer/ltfrontend1:latest
         container_name: 'ltfrontend'
         ports:
           - 5173:5173
