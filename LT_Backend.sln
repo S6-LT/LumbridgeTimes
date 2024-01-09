@@ -26,7 +26,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerlessLikeCounter", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessLikeCounter", "ServerlessLikeCounter\ServerlessLikeCounter.csproj", "{8E0A055A-DA36-4248-A892-35E666CDB7E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQConsumer", "RabbitMQConsumer\RabbitMQConsumer.csproj", "{5B99E9E6-F30B-4317-8ECF-5268ABB82877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQConsumer", "RabbitMQConsumer\RabbitMQConsumer.csproj", "{5B99E9E6-F30B-4317-8ECF-5268ABB82877}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9854CF28-F97A-497D-ACC8-2D9C7240E9FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageIntegrationTests", "UnitTests\UnitTests\MessageIntegrationTests.csproj", "{2BBC39D6-5394-46F3-8B52-D2EC87AB3704}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D74B52-9E53-464B-9CA0-90B1E2A4FE46} = {98D74B52-9E53-464B-9CA0-90B1E2A4FE46}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +61,10 @@ Global
 		{5B99E9E6-F30B-4317-8ECF-5268ABB82877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B99E9E6-F30B-4317-8ECF-5268ABB82877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B99E9E6-F30B-4317-8ECF-5268ABB82877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBC39D6-5394-46F3-8B52-D2EC87AB3704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBC39D6-5394-46F3-8B52-D2EC87AB3704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBC39D6-5394-46F3-8B52-D2EC87AB3704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBC39D6-5394-46F3-8B52-D2EC87AB3704}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +79,8 @@ Global
 		{D2233082-44BF-4D1B-9DC1-8F68F8E7C26B} = {E6F0C9C3-021B-45FA-8A47-0387940DDF21}
 		{8E0A055A-DA36-4248-A892-35E666CDB7E4} = {D2233082-44BF-4D1B-9DC1-8F68F8E7C26B}
 		{5B99E9E6-F30B-4317-8ECF-5268ABB82877} = {A7C30E7F-BB38-4EEC-8269-3CFA077FA6D8}
+		{9854CF28-F97A-497D-ACC8-2D9C7240E9FE} = {E6F0C9C3-021B-45FA-8A47-0387940DDF21}
+		{2BBC39D6-5394-46F3-8B52-D2EC87AB3704} = {9854CF28-F97A-497D-ACC8-2D9C7240E9FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8849C1B3-3CF4-4AF5-9EB1-897C3700C1BD}

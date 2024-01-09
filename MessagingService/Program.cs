@@ -52,3 +52,5 @@ app.MapGet("/message/delete", ([FromServices] IDataRepository db, int id) =>
 });
 
 app.Run();
+
+public partial class Program { }
