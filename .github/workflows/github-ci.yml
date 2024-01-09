@@ -36,10 +36,8 @@ jobs:
           dotnet-version: 6.0.x
       - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build
-      - name: Test 
-        run: dotnet test
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
 
   docker_build:
     runs-on: ubuntu-latest
