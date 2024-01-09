@@ -3,14 +3,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 1443
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MessagingService.csproj", "./"]
-RUN dotnet restore "./MessagingService.csproj"
+COPY ["MessagingService/MessagingService.csproj", "MessagingService/"]
+RUN dotnet restore "MessagingService/MessagingService.csproj"
 COPY . .
-WORKDIR "/src/"
+WORKDIR "/src/MessagingService"
 RUN dotnet build "MessagingService.csproj" -c Release -o /app/build
 
 FROM build AS publish
