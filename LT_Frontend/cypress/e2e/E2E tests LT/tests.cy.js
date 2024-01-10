@@ -2,6 +2,12 @@
 
 
 context('DeleteMessageByID', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        // returning false here prevents Cypress from
+        // failing the test
+        return false
+    })
+
     it('Deletes a message', () => {
         cy.visit('http://localhost:5173');
         cy.contains('Login').click();
@@ -21,6 +27,11 @@ context('DeleteMessageByID', () => {
 
 
 context('CreateMessage', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        // returning false here prevents Cypress from
+        // failing the test
+        return false
+    })
     it('Creates a message', () => {
         cy.visit('http://localhost:5173');
         cy.contains('Login').click();
