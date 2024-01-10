@@ -13,8 +13,8 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(root, 'index.html'),
-        about: resolve(root, 'about', 'index.html'),
+        main: resolve(root, 'index.html')
+        // about: resolve(root, 'about', 'index.html'),
       }
     }
   },
