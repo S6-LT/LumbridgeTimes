@@ -22,4 +22,5 @@ jobs:
           working-directory: ./LT_Frontend
           build: npm run build
           start: npm run dev
+          record: true
           browser: chrome
