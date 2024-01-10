@@ -24,3 +24,5 @@ jobs:
           start: npm run dev
           record: true
           browser: chrome
+        env:
+          CYPRESS_RECORD_KEY: 3cb864b6-76e6-4996-a7f7-b808e5e6af07
