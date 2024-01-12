@@ -1,57 +1,31 @@
-name: Build and deploy to Azure Kubernetes Service
+name: Kubernetes
 
 env:
-  AZURE_CONTAINER_REGISTRY: lumbridgetimes # set this to the name of your container registry
-  #PROJECT_NAME: MY_PROJECT_NAME              # set this to your project's name
-  RESOURCE_GROUP: AzureLT         # set this to the resource group containing your AKS cluster
-  CLUSTER_NAME: ltcluster            # set this to the name of your AKS cluster
-  REGISTRY_URL: lumbridgetimes.azurecr.io              # set this to the URL of your registry
-
-
-on: [push]
+  resourceGroup: 'AzureLT'
+  kubernetesVersion: '1.28'
+  name: 'lumbridgetimesaks'
+  
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    
-    - name: checkout
-      uses: actions/checkout@v4
     - name: Azure Login
       uses: Azure/login@v1.5.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Build image on ACR
+    - name: Azure CLI Action
       uses: Azure/cli@v1.0.9
       with:
-        azcliversion: 2.29.1
-        inlineScript: |
-          az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
-          az acr build -t  -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
-    
-    - name: Gets K8s context
-      uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ env.RESOURCE_GROUP }}
-          cluster-name: ${{ env.CLUSTER_NAME }}
-      id: login
+        inlineScript: az aks create -g ${{ env.resourceGroup }} -n ${{ env.name }} --kubernetes-version ${{ env.kubernetesVersion }} --generate-ssh-keys
 
-    - name: Configure deployment
-      uses: azure/k8s-bake@61041e8c2f75c1f01186c8f05fb8b24e1fc507d8
-      with:
-        renderEngine: 'helm'
-        overrides: |     
-          replicas:2
-        helm-version: 'latest' 
-      id: bake
-
-    - name: Deploys application
-    - uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
-      with:
-        manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        images: |
-          ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.PROJECT_NAME }}:${{ github.sha }}
-        imagepullsecrets: |
-          ${{ env.PROJECT_NAME }}
+              
+              
+      
