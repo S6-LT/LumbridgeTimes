@@ -14,14 +14,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    
+    - name: checkout
+      uses: actions/checkout@v4
     - name: Azure Login
-      uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
+      uses: Azure/login@v1.5.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Build image on ACR
-      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
+      uses: Azure/cli@v1.0.9
       with:
         azcliversion: 2.29.1
         inlineScript: |
