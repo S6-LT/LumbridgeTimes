@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - name: Azure Login
       uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
       with:
