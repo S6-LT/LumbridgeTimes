@@ -3,6 +3,9 @@ using UserService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,19 @@ builder.Services.AddDbContext<UserDbContext>(x => x.UseSqlServer(connectionStrin
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
+var serviceName = "UserService";
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(builder => builder.AddService(serviceName))
+    .WithTracing(builder => builder.AddConsoleExporter()
+    .AddSource(serviceName)
+    .SetResourceBuilder(
+        ResourceBuilder.CreateDefault().AddService(serviceName, serviceVersion: "1.0.0"))
+    .AddAspNetCoreInstrumentation()
+    .AddSqlClientInstrumentation()
+    .AddJaegerExporter()
+    .AddHttpClientInstrumentation()); ;
+
 
 var app = builder.Build();
 
