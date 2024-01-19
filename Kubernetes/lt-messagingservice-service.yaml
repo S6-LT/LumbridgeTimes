@@ -9,6 +9,7 @@ metadata:
     io.kompose.service: lt-messagingservice
   name: lt-messagingservice
 spec:
+  type: NodePort
   ports:
     - name: "7080"
       port: 7080

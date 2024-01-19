@@ -25,7 +25,7 @@ spec:
         io.kompose.service: lt-messagingservice
     spec:
       containers:
-        - image: lumbridgetimes.azurecr.io/messagingservice:latest
+        - image: yarikbrouwer/messagingservice:main
           name: messagingservice
           ports:
             - containerPort: 5000
