@@ -11,4 +11,9 @@
     <PackageReference Include="RabbitMQ.Client" Version="6.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ImageUploadService\ImageUploadService.csproj" />
+    <ProjectReference Include="..\MessagingService\MessagingService.csproj" />
+  </ItemGroup>
+
 </Project>
